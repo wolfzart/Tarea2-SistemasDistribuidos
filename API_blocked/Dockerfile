@@ -1,6 +1,6 @@
 FROM node:16.6.1-alpine3.14
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
