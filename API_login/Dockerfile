@@ -7,8 +7,6 @@ WORKDIR /app
 # where available (npm@5+)
 COPY package*.json ./
 
-#RUN npm install nodemon --save-dev
-
 RUN npm install
 
 # If you are building your code for production
