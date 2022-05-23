@@ -30,7 +30,8 @@ app.post("/login",async (req, res) =>{
       ],
     })
     await producer.disconnect()
-
+    await admin.disconnect()
+    res.send("enviado")
 })
 
 
