@@ -1,4 +1,4 @@
-# Tarea2-SistemasDistribuidos
+# Tarea2-SistemasDistribuidos _°Sebastianes Gonzalez y Concha°_
 El objetivo de la tarea consiste en que los estudiantes entiendan las principales características de Kafka, como configurar un broker de Kafka e implementar un servicio de autenticación y un servicio de seguridad ante actividad maliciosa comunicados mediante un broker de Kafka.
 
 Melon Musk es su mejor amigo y también es un empresario multimillonario que compró una de las plataformas de redes sociales más grande del mundo: Fruitter. Esta plataforma funcionaba correctamente, sin embargo, a Melon Musk no le gustaba el sistema de login que este poseía (a pesar de ser un sistema completo y funcional), debido a que  ́el buscaba
@@ -32,8 +32,8 @@ $ docker-compose up
 
 ```
 {
-	“user”: “ escribir algún email o usuario ”,
-	“pass”: ” escribir alguna contraseña ”
+	“user”: “NOMBRE_USUARIO”,
+	“pass”: ”CONTRASEÑA_USUARIO”
 }
 ```
 Siendo enviadas con el tipo de petición POST desde la siguiente url:  
@@ -41,16 +41,21 @@ Siendo enviadas con el tipo de petición POST desde la siguiente url:
 ```
 http:/localhost:3000/login
 ```
-3. Luego se realiza una petición tipo GET a la siguiente ruta:
+3. Luego se realizá una petición tipo GET a la siguiente ruta:
 
 ```
 http:/localhost:5000/blocked
 ``` 
-El cual mostrara los usuarios bloqueados, para que suceda esto se tienen que cumplir las siguientes condiciones:
+La cual mostrará los usuarios bloqueados. Para que suceda esto se tienen que cumplir las siguientes condiciones:
 - La cuenta del usuario será bloqueada si se equivoca 5 veces 
 - La cuenta del usuario será bloqueada si lo anterior sucedió durante un periodo de 60 segundos, en caso de superar estos 60 segundos se reinicia la cuenta.
 ## Preguntas
-1. ¿Por qué Kafka funciona bien en este escenario?.
+1. ¿Por qué Kafka funciona bien en este escenario?
 
+Apache Kafka es una plataforma distribuida de transmición de datos, en este caso son las credenciales dichos datos. Kafka al funcionar en tiempo real, es capaz de entregar de manera continua estas credenciales al servicio de bloqueo y de esta forma tener información contantemente actualizada.
 
-2.  Basado en las tecnologías que usted tiene a su disposición (Kafka, backend) ¿Qué haría usted para manejar una gran cantidad de usuarios al mismo tiempo?.
+2.  Basado en las tecnologías que usted tiene a su disposición (Kafka, backend) ¿Qué haría usted para manejar una gran cantidad de usuarios al mismo tiempo?
+
+Suponiedo que exista un gran flujo de datos, van a ser necesarios un mayor número de brokers en Kafka para lograr así un mayor nivel de partición de los datos y balancear la carga almacenada en estos. Por otro lado, tambien van a ser necesarios más consumidores, puesto que con uno solo que procese este flujo de datos no va a ser suficiente; todos estos consumidores van a obtener la información de algún respectivo broker y van a mantener los usuarios bloqueados constantemente actualizados.
+
+![metamorfosis-1915-franz-kafka-transformacion--T-i2wPgi](https://user-images.githubusercontent.com/69988825/169922847-895c3f44-5b1e-4b32-b686-c04afe13fa99.jpg)
